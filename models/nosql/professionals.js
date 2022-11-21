@@ -54,6 +54,14 @@ const ProfessionalScheme = new mongoose.Schema(
       ref: "specialities"
 
     },
+    image: {
+      url: {
+        type: String,
+      },
+      public_id: {
+        type: String,
+      },
+    },
 
 
   },
@@ -70,7 +78,7 @@ const ProfessionalScheme = new mongoose.Schema(
 // return this.find({ name: new RegExp(name, 'i') });
 
 
-
+//hola
 
 ProfessionalScheme.plugin(mongooseDelete, { overrideMethods: 'all' })
 module.exports = mongoose.model("professionals", ProfessionalScheme)
