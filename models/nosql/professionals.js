@@ -54,6 +54,14 @@ const ProfessionalScheme = new mongoose.Schema(
       ref: "specialities"
 
     },
+    image: {
+      url: {
+        type: String,
+      },
+      public_id: {
+        type: String,
+      },
+    },
 
 
   },

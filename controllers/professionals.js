@@ -45,18 +45,100 @@ const getProfessionalById = async (req, res) => {
  * @param {*} res 
  */
 
-
 const createProfessional = async (req, res) => {
   try {
-    const body = matchedData(req)
-    // console.log(body);
-    const data = await professionalsModel.create(body)
+    const {
+      first_name,
+      last_name,
+      dni,
+      password,
+      state,
+      city,
+      email,
+      zip,
+      professionaladress,
+      professionalId,
+      country,
+      schedule,
+      specialities,
+      modality,
+    } = matchedData(req);
 
-    res.send({ data })
+    let storedImageData = { url: "", public_id: "" };
+
+    if (req.files?.image) {
+      const resultImageCloudinary = await uploadImage(
+        req.files.image.tempFilePath
+      );
+      storedImageData = {
+        url: resultImageCloudinary.secure_url,
+        public_id: resultImageCloudinary.public_id,
+      };
+
+      fs.unlink(req.files.image.tempFilePath, (error) => {
+        if (error) {
+          console.log(error);
+        } else {
+          console.log("\nFile deleted");
+        }
+      });
+    }
+
+    if (req.body.image) {
+      const extension = req.body.image.split(";")[0].split("/")[1];
+      const base64Image = req.body.image.split(";base64,").pop();
+      const imageTempFilePath = `./uploads/tempImage.${extension}`;
+
+      fs.writeFile(
+        imageTempFilePath,
+        base64Image,
+        { encoding: "base64" },
+        function (err) {
+          console.log("File created");
+        }
+      );
+
+      const resultImageCloudinary = await uploadImage(imageTempFilePath);
+      storedImageData = {
+        url: resultImageCloudinary.secure_url,
+        public_id: resultImageCloudinary.public_id,
+      };
+
+      fs.unlink(imageTempFilePath, (error) => {
+        if (error) {
+          console.log(error);
+        } else {
+          console.log("\nFile deleted");
+        }
+      });
+    }
+
+    const proCreated = await professionalModel.create({
+      first_name,
+      last_name,
+      dni,
+      password,
+      state,
+      city,
+      email,
+      zip,
+      professionaladress,
+      professionalId,
+      country,
+      schedule,
+      specialities,
+      modality,
+      image: storedImageData,
+    });
+    console.log('proCreated', proCreated);
+    res.send(proCreated);
   } catch (error) {
-    handleHttpError(res, "Error creando al profesional")
+    console.log('error', error);
+    handleHttpError(res, "Error creando al usuario" + error, 500);
   }
-}
+};
+
+
 /**
  *  crear un registro!
  * @param {*} req 
