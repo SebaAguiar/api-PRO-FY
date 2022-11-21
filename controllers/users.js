@@ -1,4 +1,5 @@
 const { usersModel } = require('../models');
+const fs = require('fs-extra')
 const { handleHttpError } = require('../utils/handleError');
 const { matchedData } = require('express-validator');
 const { uploadImage } = require('../config/cloudinaryconfig');
@@ -47,15 +48,46 @@ const getUserById = async (req, res) => {
 
 const createUsers = async (req, res) => {
   try {
-    const body = matchedData(req)
+    const { first_name, last_name, DNI, password, state, city, email, postcode, address, rol, country, image, favorites } = matchedData(req)
     console.log(req.files);
     if (req.files?.image) {
       const result = await uploadImage(req.files.image.tempFilePath)
       console.log(result);
+      const userCreated = await usersModel.create({
+        first_name: first_name,
+        last_name: last_name,
+        DNI: DNI,
+        password: password,
+        state: state,
+        city: city,
+        email: email,
+        postcode: postcode,
+        address: address,
+        rol: rol,
+        country: country,
+        favorites: favorites,
+        image: { url: result.secure_url, public_id: result.public_id },
+      })
+      await fs.unlink(req.files.image.tempFilePath)
+      res.send(userCreated)
+    } else {
+      const userCreated = await usersModel.create({
+        first_name,
+        last_name,
+        DNI,
+        password,
+        state,
+        city,
+        email,
+        postcode,
+        address,
+        rol,
+        country,
+        favorites,
+        image: { url: image, public_id: "" },
+      })
+      res.send(userCreated)
     }
-
-    const data = await usersModel.create(body)
-    res.send({ data })
   } catch (error) {
     handleHttpError(res, "Error creando al usuario")
   }

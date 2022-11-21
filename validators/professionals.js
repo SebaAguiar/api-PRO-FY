@@ -20,9 +20,8 @@ const validatorCreateProfessional = [
     .exists()
     .notEmpty(),
   check("dni")
-    .optional(),
-  // .exists()
-  // .notEmpty(),
+    .exists()
+    .notEmpty(),
   check("professionalId")
     .exists()
     .notEmpty(),
@@ -42,7 +41,8 @@ const validatorCreateProfessional = [
     .exists()
     .notEmpty(),
   check('specialities')
-    .optional(),
+    .exists()
+    .notEmpty(),
   check("schedule")
     .optional(), //! temporal
   check("modality")
