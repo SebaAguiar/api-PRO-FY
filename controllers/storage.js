@@ -49,17 +49,13 @@ const getItemsById = async (req, res) => {
 const createItem = async (req, res) => {
   try {
     const { body, file } = req
-    // console.log(file)
-
+    console.log(file)
     const fileData = {
       filename: file.filename,
       url: `${PUBLIC_URL}/${file.filename}`
     }
-    const cloud = await v2.uploader.upload(file.path)
     const data = await storageModel.create(fileData)
-
-    console.log(cloud);
-    res.send({ cloud, data })
+    res.send({ data })
   } catch (error) {
     handleHttpError(res, "ERROR_UPLOADING_MEDIA")
 
