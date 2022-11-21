@@ -78,7 +78,7 @@ const ProfessionalScheme = new mongoose.Schema(
 // return this.find({ name: new RegExp(name, 'i') });
 
 
-
+//hola
 
 ProfessionalScheme.plugin(mongooseDelete, { overrideMethods: 'all' })
 module.exports = mongoose.model("professionals", ProfessionalScheme)
