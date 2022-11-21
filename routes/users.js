@@ -3,11 +3,13 @@ const { getUsers, createUsers, getUserById, deleteUsers, editUsers, } = require(
 const { useStripe } = require("../controllers/stripe")
 const { validatorCreateUser, validatorIdUser, validatorPutUsers } = require("../validators/users");
 const autMiddleware = require("../middleware/session");
+const { checkRol } = require("../middleware/rol");
 const router = express.Router();
 
 
+//el checkRol: en el array significa que solo esos usuarios pueden acceder a esa ruta, pensar admin pro y user como armar el esquema?
 
-router.get("/", autMiddleware, getUsers);
+router.get("/", validatorCreateUser, autMiddleware, getUsers); //poner validador personalizado para la revision de datos
 
 //router.get("/", getUsers);
 
@@ -19,9 +21,8 @@ router.put("/:id", validatorIdUser, validatorPutUsers, editUsers)
 
 router.post("/", validatorCreateUser, createUsers)
 
-// router.post("/pay", useStripe)
-
-
+// router.post("/pay", useStripe
+// checkRol(["admin"])
 
 
 

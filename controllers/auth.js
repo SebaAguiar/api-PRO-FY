@@ -3,6 +3,7 @@ const { handleHttpError } = require('../utils/handleError');
 const { matchedData } = require('express-validator');
 const { encrypt, compare } = require('../utils/handlePassword');
 const { TokenSing } = require('../utils/handleJwt');
+const sendMail = require('../config/nodemailer')
 
 
 /**
@@ -14,14 +15,17 @@ const { TokenSing } = require('../utils/handleJwt');
 const registerCtrl = async (req, res) => {
   try {
     req = matchedData(req)
+    const email = await (req.email)
     const password = await encrypt(req.password)
     const body = { ...req, password }
     const dataUser = await usersModel.create(body)
     dataUser.set('password', undefined, { strict: false })
+
     const data = {
       token: await TokenSing(dataUser),
       user: dataUser
     }
+    sendMail.sendMail(email)
     res.send({ data })
   } catch (error) {
     handleHttpError(res, "ERROR_REGISTER_USER")
@@ -38,7 +42,7 @@ const registerCtrl = async (req, res) => {
 const loginCtrl = async (req, res) => {
   try {
     req = matchedData(req)
-    const user = await usersModel.findOne({ email: req.email }).select('password name role email')
+    const user = await usersModel.findOne({ email: req.email }).select('password first_name last_name role email')
     if (!user) {
       handleHttpError(res, "USER_NOT_EXIST", 404)
       return

@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 const mongooseDelete = require('mongoose-delete')
-const UserScheme = new mongoose.Schema(
+const userAvatarScheme = new mongoose.Schema(
   {
     id: {
       type: mongoose.Types.ObjectId,
@@ -31,7 +31,7 @@ const UserScheme = new mongoose.Schema(
     },
     email: {
       type: String,
-      //unique: true,
+      unique: true,
     },
     favorites: {  //opcional para uso nuestro
       type: String,
@@ -41,7 +41,7 @@ const UserScheme = new mongoose.Schema(
       select: false
     },
     // image: {
-    //   type: Object,
+    //   type: String,
     // },
     image: {
       url: {
@@ -52,7 +52,7 @@ const UserScheme = new mongoose.Schema(
       },
     },
     role: {  //opcional para uso nuestro
-      type: ["user", "admin"],
+      type: ["user", "admin", "pro"],
       default: "user",
     },
   },
@@ -61,6 +61,5 @@ const UserScheme = new mongoose.Schema(
     versionKey: false,
   }
 )
-UserScheme.plugin(mongooseDelete, { overrideMethods: 'all' })
-module.exports = mongoose.model("users", UserScheme)
-//hans24
+userAvatarScheme.plugin(mongooseDelete, { overrideMethods: 'all' })
+module.exports = mongoose.model("usersAvatar", userAvatarScheme)
