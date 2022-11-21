@@ -4,45 +4,73 @@ const validateResults = require("../utils/handleValidator");
 
 const validatorCreateUser = [
 
+  // check("first_name")
+  //   .exists()
+  //   .notEmpty()
+  //   .isLength({ min: 4, max: 30 }),
+  // check("last_name")
+  //   .exists()
+  //   .notEmpty()
+  //   .isLength({ min: 4, max: 30 }),
+  // check("email")
+  //   .exists()
+  //   .notEmpty()
+  //   .isEmail(),
+  // check("favorites")
+  //   .optional(),
+  // check("state")
+  //   .exists()
+  //   .notEmpty(),
+  // check("city")
+  //   .exists()
+  //   .notEmpty(),
+  // check("password")
+  //   .exists()
+  //   .notEmpty()
+  //   .isLength({ min: 4, max: 15 }),
+  // check("role")
+  //   .optional(),
+  // check("address")
+  //   .exists()
+  //   .notEmpty(),
+  // check("DNI")
+  //   .exists()
+  //   .notEmpty()
+  //   .isNumeric(),
+  // check("country")
+  //   .optional(),
+  // check("postcode")
+  //   .exists()
+  //   .notEmpty(),
+  // check("image")
+  //   .optional(),
+
   check("first_name")
-    .exists()
-    .notEmpty()
-    .isLength({ min: 4, max: 30 }),
+    .optional(),
   check("last_name")
-    .exists()
-    .notEmpty()
-    .isLength({ min: 4, max: 30 }),
+    .optional(),
   check("email")
-    .exists()
-    .notEmpty()
-    .isEmail(),
+    .optional(),
   check("favorites")
     .optional(),
   check("state")
-    .exists()
-    .notEmpty(),
+    .optional(),
   check("city")
-    .exists()
-    .notEmpty(),
+    .optional(),
   check("password")
-    .exists()
-    .notEmpty()
-    .isLength({ min: 4, max: 15 }),
+    .optional(),
   check("role")
     .optional(),
   check("address")
-    .exists()
-    .notEmpty(),
+    .optional(),
   check("DNI")
-    .exists()
-    .notEmpty()
-    .isNumeric(),
+    .optional(),
   check("country")
     .optional(),
   check("postcode")
-    .exists()
-    .notEmpty(),
-
+    .optional(),
+  check("image")
+    .optional(),
   (req, res, next) => {
     return validateResults(req, res, next)
   }
@@ -74,7 +102,8 @@ const validatorPutUsers = [
     .optional(),
   check("postcode")
     .optional(),
-
+  // check("image")
+  //   .optional(),
 
 
   (req, res, next) => {
