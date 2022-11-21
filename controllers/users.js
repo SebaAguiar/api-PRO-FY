@@ -44,7 +44,6 @@ const getUserById = async (req, res) => {
  */
 
 const createUsers = async (req, res) => {
-  console.log('req.body', req.body);
   try {
     const {
       first_name,
@@ -93,7 +92,7 @@ const createUsers = async (req, res) => {
           console.log("File created");
         }
       );
-
+    
       const resultImageCloudinary = await uploadImage(imageTempFilePath);
       storedImageData = {
         url: resultImageCloudinary.secure_url,
@@ -107,25 +106,26 @@ const createUsers = async (req, res) => {
           console.log("\nFile deleted");
         }
       });
-
-      const userCreated = await usersModel.create({
-        first_name,
-        last_name,
-        DNI,
-        password,
-        state,
-        city,
-        email,
-        postcode,
-        address,
-        country,
-        favorites,
-        image: storedImageData,
-      });
-
-      res.send(userCreated);
     }
-  } catch (error) {
+
+    const userCreated = await usersModel.create({
+      first_name,
+      last_name,
+      DNI,
+      password,
+      state,
+      city,
+      email,
+      postcode,
+      address,
+      country,
+      favorites,
+      image: storedImageData,
+    });
+    console.log('userCreated', userCreated);
+    res.send(userCreated);
+  } catch(error) {
+    console.log('error', error);
     handleHttpError(res, "Error creando al usuario" + error, 500);
   }
 };
