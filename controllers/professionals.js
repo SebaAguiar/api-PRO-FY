@@ -1,6 +1,8 @@
 const { professionalsModel } = require('../models');
-const { handleHttpError } = require('../utils/handleError');
-const { matchedData } = require('express-validator');
+const fs = require("fs");
+const { handleHttpError } = require("../utils/handleError");
+const { matchedData } = require("express-validator");
+const { uploadImageProfessional } = require("../config/cloudinaryconfig-copy");;
 
 
 
@@ -35,7 +37,6 @@ const getProfessionalById = async (req, res) => {
     res.send({ data })
   } catch (error) {
     handleHttpError(res, "Error id profesional")
-
   }
 }
 
@@ -45,7 +46,10 @@ const getProfessionalById = async (req, res) => {
  * @param {*} res 
  */
 
+
 const createProfessional = async (req, res) => {
+  console.log("req.files",req.files)
+  console.log("req.files",req.body)
   try {
     const {
       first_name,
@@ -67,7 +71,7 @@ const createProfessional = async (req, res) => {
     let storedImageData = { url: "", public_id: "" };
 
     if (req.files?.image) {
-      const resultImageCloudinary = await uploadImage(
+      const resultImageCloudinary = await uploadImageProfessional(
         req.files.image.tempFilePath
       );
       storedImageData = {
@@ -97,8 +101,8 @@ const createProfessional = async (req, res) => {
           console.log("File created");
         }
       );
-
-      const resultImageCloudinary = await uploadImage(imageTempFilePath);
+    
+      const resultImageCloudinary = await uploadImageProfessional(imageTempFilePath);
       storedImageData = {
         url: resultImageCloudinary.secure_url,
         public_id: resultImageCloudinary.public_id,
@@ -113,7 +117,7 @@ const createProfessional = async (req, res) => {
       });
     }
 
-    const proCreated = await professionalModel.create({
+    const userCreated = await professionalsModel.create({
       first_name,
       last_name,
       dni,
@@ -130,15 +134,17 @@ const createProfessional = async (req, res) => {
       modality,
       image: storedImageData,
     });
-    console.log('proCreated', proCreated);
-    res.send(proCreated);
-  } catch (error) {
+    console.log('userCreated', userCreated);
+    res.send(userCreated);
+  } catch(error) {
     console.log('error', error);
     handleHttpError(res, "Error creando al usuario" + error, 500);
   }
 };
 
-//holacd 
+
+
+
 /**
  *  crear un registro!
  * @param {*} req 
