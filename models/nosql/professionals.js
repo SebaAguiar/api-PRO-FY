@@ -40,9 +40,11 @@ const ProfessionalScheme = new mongoose.Schema(
     professionalAdress: {
       type: String,
     },
-    schedule: {
+    scheduleDays: {
       type: String,
-
+    },
+    scheduleHours: {
+      type: String,
     },
     image: {
       url: {
@@ -55,6 +57,10 @@ const ProfessionalScheme = new mongoose.Schema(
     modality: {
       type: ["presential", "remote"],
       default: 'presential',
+    },
+    rating: {
+      type: Number,
+      min: 0, max: 5
     },
 
     specialities: {
