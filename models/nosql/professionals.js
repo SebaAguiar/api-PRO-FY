@@ -62,6 +62,10 @@ const ProfessionalScheme = new mongoose.Schema(
       type: Number,
       min: 0, max: 5
     },
+    plan: {
+      type: ["noSuscription", "basic", "premium"],
+      default: "noSuscription",
+    },
 
     specialities: {
       type: Schema.Types.ObjectId,

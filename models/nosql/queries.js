@@ -9,10 +9,13 @@ const queriesScheme = new mongoose.Schema(
       type: mongoose.Types.ObjectId,
     },
     createdDate: {
-      type: Date,
+      type: String,
     },
     queryDate: {
-      type: Date,
+      type: String,
+    },
+    queryHour: {
+      type: String
     },
     motive: {
       type: String,
