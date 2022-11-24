@@ -23,7 +23,10 @@ router.put("/:id", validatorIdUser, validatorPutUsers, editUsers)
 
 router.post("/", validatorCreateUser, createUsers)
 
-router.post("/pay", useStripe)
+router.post("/payUserBasic", useStripeUsersBasic)
+
+router.post("/payUserPremium", useStripeUsersPremium)
+
 // checkRol(["admin"])
 
 
