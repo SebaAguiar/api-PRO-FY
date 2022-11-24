@@ -73,7 +73,6 @@ const ProfessionalScheme = new mongoose.Schema(
 
     },
 
-
   },
 
   {

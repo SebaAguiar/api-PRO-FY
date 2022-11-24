@@ -61,8 +61,7 @@ const validatorCreateUser = [
   check("postcode").optional(),
   check("image.url").optional(),
   check("image.public_id").optional(),
-
-
+  check("plan").optional(),
 
   (req, res, next) => {
     return validateResults(req, res, next);
@@ -99,7 +98,7 @@ const validatorPutUsers = [
     .optional(),
   check("image.public_id")
     .optional(),
-
+  check("plan").optional(),
 
   (req, res, next) => {
     return validateResults(req, res, next)
