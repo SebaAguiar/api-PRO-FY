@@ -4,50 +4,91 @@ const validateResults = require("../utils/handleValidator");
 
 const validatorCreateProfessional = [
 
+  // check("first_name")
+  //   .exists()
+  //   .notEmpty()
+  //   .isLength({ min: 4, max: 100 }),
+  // check("last_name")
+  //   .exists()
+  //   .notEmpty()
+  //   .isLength({ min: 4, max: 100 }),
+  // check("email")
+  //   .exists()
+  //   .notEmpty()
+  //   .isEmail(),
+  // check("password")
+  //   .exists()
+  //   .notEmpty(),
+  // check("dni")
+  //   .exists()
+  //   .notEmpty(),
+  // check("professionalId")
+  //   .exists()
+  //   .notEmpty(),
+  // check("country")
+  //   .exists()
+  //   .notEmpty(),
+  // check("state")
+  //   .exists()
+  //   .notEmpty(),
+  // check("city")
+  //   .exists()
+  //   .notEmpty(),
+  // check("zip")
+  //   .exists()
+  //   .notEmpty(),
+  // check("professionalAdress")
+  //   .exists()
+  //   .notEmpty(),
+  // check('specialities')
+  //   .exists()
+  //   .notEmpty(),
+  // check("schedule")
+  //   .optional(), //! temporal
+  // check("modality")
+  //   .optional(), //! temporal
+  // check("scheduleDays")
+  //   .optional(),
+  // check("scheduleHours")
+  //   .optional(),
+  // check('rating')
+  //   .optional(),
+
   check("first_name")
-    .exists()
-    .notEmpty()
-    .isLength({ min: 4, max: 100 }),
+    .optional(),
   check("last_name")
-    .exists()
-    .notEmpty()
-    .isLength({ min: 4, max: 100 }),
+    .optional(),
   check("email")
-    .exists()
-    .notEmpty()
-    .isEmail(),
+    .optional(),
   check("password")
-    .exists()
-    .notEmpty(),
+    .optional(),
   check("dni")
-    .exists()
-    .notEmpty(),
+    .optional(),
   check("professionalId")
-    .exists()
-    .notEmpty(),
+    .optional(),
   check("country")
-    .exists()
-    .notEmpty(),
+    .optional(),
   check("state")
-    .exists()
-    .notEmpty(),
+    .optional(),
   check("city")
-    .exists()
-    .notEmpty(),
+    .optional(),
   check("zip")
-    .exists()
-    .notEmpty(),
+    .optional(),
   check("professionalAdress")
-    .exists()
-    .notEmpty(),
+    .optional(),
   check('specialities')
-    .exists()
-    .notEmpty(),
+    .optional()
+    .isMongoId(),
   check("schedule")
     .optional(), //! temporal
   check("modality")
     .optional(), //! temporal
-
+  check("scheduleDays")
+    .optional(),
+  check("scheduleHours")
+    .optional(),
+  check('rating')
+    .optional(),
 
 
 
@@ -87,7 +128,12 @@ const validatorPutProfessional = [
     .optional(), //! temporal
   check("modality")
     .optional(), //! temporal
-
+  check("scheduleDays")
+    .optional(),
+  check("scheduleHours")
+    .optional(),
+  check('rating')
+    .optional(),
 
 
   (req, res, next) => {
