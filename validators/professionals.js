@@ -87,7 +87,7 @@ const validatorCreateProfessional = [
     .optional(),
   check('rating')
     .optional(),
-
+  check("plan").optional(),
 
 
   (req, res, next) => {
@@ -132,7 +132,7 @@ const validatorPutProfessional = [
     .optional(),
   check('rating')
     .optional(),
-
+  check("plan").optional(),
 
   (req, res, next) => {
     return validateResults(req, res, next)
