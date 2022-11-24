@@ -79,8 +79,6 @@ const validatorCreateProfessional = [
   check('specialities')
     .optional()
     .isMongoId(),
-  check("schedule")
-    .optional(), //! temporal
   check("modality")
     .optional(), //! temporal
   check("scheduleDays")
