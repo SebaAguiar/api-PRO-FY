@@ -10,6 +10,9 @@ const validatorCreateQuery = [
   check("queryDate")
     .exists()
     .notEmpty(),
+  check("queryHour")
+    .exists()
+    .notEmpty(),
   check("motive")
     .exists()
     .notEmpty(),
@@ -34,13 +37,15 @@ const validatorPutQuery = [
     .optional(),
   check("queryDate")
     .optional(),
+  check("queryHour")
+    .optional(),
   check("motive")
     .optional(),
   check("state")
     .optional(),
-  check("userId")
+  check("users")
     .optional(),
-  check("professionalId")
+  check("professionals")
     .optional(),
 
 

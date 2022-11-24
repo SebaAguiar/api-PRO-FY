@@ -55,6 +55,11 @@ const UserScheme = new mongoose.Schema(
       type: ["user", "admin"],
       default: "user",
     },
+
+    plan: {
+      type: ["noSuscription", "basic", "premium"],
+      default: "noSuscription",
+    },
   },
   {
     temestamps: true,
