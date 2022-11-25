@@ -25,7 +25,7 @@ app.use(
     tempFileDir: "./uploads",
   })
 );
-//1
+//2
 
 
 app.use(express.static("storage"))
