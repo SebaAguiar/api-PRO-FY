@@ -5,7 +5,7 @@ const { validatorCreateUser, validatorIdUser, validatorPutUsers } = require("../
 const autMiddleware = require("../middleware/session");
 const { checkRol } = require("../middleware/rol");
 const router = express.Router();
-
+  
 
 //el checkRol: en el array significa que solo esos usuarios pueden acceder a esa ruta, pensar admin pro y user como armar el esquema?
 

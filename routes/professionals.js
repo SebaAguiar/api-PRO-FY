@@ -7,7 +7,7 @@ const { validatorCreateProfessional, validatorIdProfessional, validatorPutProfes
 const { useStripeProfessionalsBasic, useStripeProfessionalsPremium } = require("../controllers/stripe")
 // const { validatorCreateUser, validatorIdUser } = require("../validators/users");
 const router = express.Router();
-
+  
 
 
 router.get("/", getAllProfessionals);
