@@ -3,20 +3,12 @@ const express = require("express")
 const cors = require("cors")
 const dbConnect = require('./config/mongo')
 const fileUpload = require("express-fileupload")
-// const { default: AdminBro } = require('admin-bro')
-// const AdminBroExpress = require('@admin-bro/express')
-// const option = require('./config/admin.options')
-// const buildAdminRouter = require('./config/admin.router')
 
 
 const app = express()
 
 app.use(cors())
 app.use(express.json())
-
-// const admin = new AdminBro(option)
-// const router = buildAdminRouter(admin);
-// app.use(admin.options.rootPath, router)
 
 
 app.use(
