@@ -4,7 +4,7 @@ const { validatorCreateProfessional, validatorIdProfessional, validatorPutProfes
 
 
 //! no entiendo pregunbtar rod
-const { useStripeProfessionalsBasic, useStripeProfessionalsPremium } = require("../controllers/stripe")
+// const { useStripe } = require("../controllers/stripe")
 // const { validatorCreateUser, validatorIdUser } = require("../validators/users");
 const router = express.Router();
 
