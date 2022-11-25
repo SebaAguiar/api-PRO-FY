@@ -20,9 +20,9 @@ router.put("/:id", validatorIdProfessional, validatorPutProfessional, editProfes
 
 router.post("/", validatorCreateProfessional, createProfessional)
 
-router.post("/payProfessionalsBasic", useStripeProfessionalsBasic)
+// router.post("/payProfessionalsBasic", useStripeProfessionalsBasic)
 
-router.post("/payProfessionalsPremium", useStripeProfessionalsPremium)
+// router.post("/payProfessionalsPremium", useStripeProfessionalsPremium)
 
 
 // validatorCreateProfessional
