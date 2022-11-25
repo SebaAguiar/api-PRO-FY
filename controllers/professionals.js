@@ -1,6 +1,8 @@
 const { professionalsModel } = require('../models');
-const { handleHttpError } = require('../utils/handleError');
-const { matchedData } = require('express-validator');
+const fs = require("fs");
+const { handleHttpError } = require("../utils/handleError");
+const { matchedData } = require("express-validator");
+const { uploadImageProfessional } = require("../config/cloudinaryconfig-copy");;
 
 
 
@@ -35,7 +37,6 @@ const getProfessionalById = async (req, res) => {
     res.send({ data })
   } catch (error) {
     handleHttpError(res, "Error id profesional")
-
   }
 }
 
@@ -47,16 +48,107 @@ const getProfessionalById = async (req, res) => {
 
 
 const createProfessional = async (req, res) => {
+  console.log("req.files",req.files)
+  console.log("req.files",req.body)
   try {
-    const body = matchedData(req)
-    // console.log(body);
-    const data = await professionalsModel.create(body)
+    const {
+      first_name,
+      last_name,
+      dni,
+      password,
+      state,
+      city,
+      email,
+      zip,
+      professionaladress,
+      professionalId,
+      country,
+      scheduleDays,
+      scheduleHours,
+      specialities,
+      modality,
+      rating
+    } = matchedData(req);
 
-    res.send({ data })
-  } catch (error) {
-    handleHttpError(res, "Error creando al profesional")
+    let storedImageData = { url: "", public_id: "" };
+
+    if (req.files?.image) {
+      const resultImageCloudinary = await uploadImageProfessional(
+        req.files.image.tempFilePath
+      );
+      storedImageData = {
+        url: resultImageCloudinary.secure_url,
+        public_id: resultImageCloudinary.public_id,
+      };
+
+      fs.unlink(req.files.image.tempFilePath, (error) => {
+        if (error) {
+          console.log(error);
+        } else {
+          console.log("\nFile deleted");
+        }
+      });
+    }
+
+    if (req.body.image) {
+      const extension = req.body.image.split(";")[0].split("/")[1];
+      const base64Image = req.body.image.split(";base64,").pop();
+      const imageTempFilePath = `./uploads/tempImage.${extension}`;
+
+      fs.writeFile(
+        imageTempFilePath,
+        base64Image,
+        { encoding: "base64" },
+        function (err) {
+          console.log("File created");
+        }
+      );
+    
+      const resultImageCloudinary = await uploadImageProfessional(imageTempFilePath);
+      storedImageData = {
+        url: resultImageCloudinary.secure_url,
+        public_id: resultImageCloudinary.public_id,
+      };
+
+      fs.unlink(imageTempFilePath, (error) => {
+        if (error) {
+          console.log(error);
+        } else {
+          console.log("\nFile deleted");
+        }
+      });
+    }
+
+    const userCreated = await professionalsModel.create({
+      first_name,
+      last_name,
+      dni,
+      password,
+      state,
+      city,
+      email,
+      zip,
+      professionaladress,
+      professionalId,
+      country,
+      scheduleDays,
+      scheduleHours,
+      specialities,
+      modality,
+      rating,
+      image: storedImageData,
+    });
+    console.log('userCreated', userCreated);
+    res.send(userCreated);
+  } catch(error) {
+    console.log('error', error);
+    handleHttpError(res, "Error creando al usuario" + error, 500);
   }
-}
+};
+
+
+
+
 /**
  *  crear un registro!
  * @param {*} req 

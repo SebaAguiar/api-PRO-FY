@@ -2,7 +2,8 @@ const { check } = require("express-validator");
 const validateResults = require("../utils/handleValidator");
 
 
-const validatorCreateUser = [
+const validatorCreateUsersAvatar = [
+
   // check("first_name")
   //   .exists()
   //   .notEmpty()
@@ -43,32 +44,6 @@ const validatorCreateUser = [
   //   .notEmpty(),
   // check("image")
   //   .optional(),
-  // check("image.url")
-  //   .optional(),
-  // check("image.public_id")
-  //   .optional(),
-  check("first_name").optional(),
-  check("last_name").optional(),
-  check("email").optional(),
-  check("favorites").optional(),
-  check("state").optional(),
-  check("city").optional(),
-  check("password").optional(),
-  check("role").optional(),
-  check("address").optional(),
-  check("DNI").optional(),
-  check("country").optional(),
-  check("postcode").optional(),
-  check("image.url").optional(),
-  check("image.public_id").optional(),
-  check("plan").optional(),
-
-  (req, res, next) => {
-    return validateResults(req, res, next);
-  },
-];
-
-const validatorPutUsers = [
 
   check("first_name")
     .optional(),
@@ -94,18 +69,49 @@ const validatorPutUsers = [
     .optional(),
   check("postcode")
     .optional(),
-  check("image.url")
+  check("image")
     .optional(),
-  check("image.public_id")
+  (req, res, next) => {
+    return validateResults(req, res, next)
+  }
+];
+
+const validatorPutUsersAvatar = [
+
+  check("first_name")
     .optional(),
-  check("plan").optional(),
+  check("last_name")
+    .optional(),
+  check("email")
+    .optional(),
+  check("favorites")
+    .optional(),
+  check("state")
+    .optional(),
+  check("city")
+    .optional(),
+  check("password")
+    .optional(),
+  check("role")
+    .optional(),
+  check("address")
+    .optional(),
+  check("DNI")
+    .optional(),
+  check("country")
+    .optional(),
+  check("postcode")
+    .optional(),
+  // check("image")
+  //   .optional(),
+
 
   (req, res, next) => {
     return validateResults(req, res, next)
   }
 ];
 
-const validatorIdUser = [
+const validatorIdUsersAvatar = [
 
   check("id")
     .exists()
@@ -118,4 +124,4 @@ const validatorIdUser = [
 
 
 
-module.exports = { validatorCreateUser, validatorIdUser, validatorPutUsers }
+module.exports = { validatorCreateUsersAvatar, validatorIdUsersAvatar, validatorPutUsersAvatar }

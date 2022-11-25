@@ -19,6 +19,7 @@ const uploadImage = async (filePath) => {
     })
 }
 
+
 const deleteImage = async (publicId) => {
     return await v2.uploader.destroy(publicId)
 }
