@@ -1,6 +1,6 @@
 const express = require("express");
 const { getUsers, createUsers, getUserById, deleteUsers, editUsers, } = require("../controllers/users");
-const { useStripe } = require("../controllers/stripe")
+const { useStripeUsersBasic, useStripeUsersPremium } = require("../controllers/stripe")
 const { validatorCreateUser, validatorIdUser, validatorPutUsers } = require("../validators/users");
 const autMiddleware = require("../middleware/session");
 const { checkRol } = require("../middleware/rol");
@@ -23,9 +23,9 @@ router.put("/:id", validatorIdUser, validatorPutUsers, editUsers)
 
 router.post("/", validatorCreateUser, createUsers)
 
-// router.post("/payUserBasic", useStripeUsersBasic)
+router.post("/payUserBasic", useStripeUsersBasic)
 
-// router.post("/payUserPremium", useStripeUsersPremium)
+router.post("/payUserPremium", useStripeUsersPremium)
 
 // checkRol(["admin"])
 
