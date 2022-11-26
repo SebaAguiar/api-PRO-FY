@@ -8,15 +8,11 @@ const ReviewsScheme = new mongoose.Schema(
     review: {
       type: String
     },
-    user: {
-      userId: {
+    users: {
         type: mongoose.Types.ObjectId,
-      }
     },
-    professional: {
-      professionalId: {
+    professionals: {
         type: mongoose.Types.ObjectId,
-      }
     },
 
     response: {
