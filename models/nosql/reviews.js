@@ -19,7 +19,7 @@ const ReviewsScheme = new mongoose.Schema(
     },
 
     response: {
-      reviewId: {
+      id: {
         type: mongoose.Types.ObjectId,
       },
       message: {
