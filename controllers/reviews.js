@@ -11,7 +11,7 @@ const { matchedData } = require('express-validator');
  */
 const getReviews = async (req, res) => {
   try {
-    const data = await reviewsModel.find({});
+    const data = await reviewsModel.find({}).populate("users").populate("professionals");
     res.send({ data })
   } catch (error) {
     handleHttpError(res, "Error_get_reviews")
@@ -28,7 +28,7 @@ const getReviewById = async (req, res) => {
     req = matchedData(req)
     const { id } = req
     console.log(id)
-    const data = await reviewsModel.findById(id)
+    const data = await reviewsModel.findById(id).populate("users").populate("professionals");
     res.send({ data })
   } catch (error) {
     handleHttpError(res, "Error id review")
