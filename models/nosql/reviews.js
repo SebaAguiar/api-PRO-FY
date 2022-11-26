@@ -1,5 +1,6 @@
 const mongoose = require('mongoose')
 const mongooseDelete = require('mongoose-delete')
+const { Scheema } = require('mongoose')
 const ReviewsScheme = new mongoose.Schema(
   {
     id: {
@@ -9,10 +10,12 @@ const ReviewsScheme = new mongoose.Schema(
       type: String
     },
     users: {
-        type: mongoose.Types.ObjectId,
+        type:Schema.Types.ObjectId,
+        ref:"users"
     },
     professionals: {
-        type: mongoose.Types.ObjectId,
+        type: Schema.Types.ObjectId,
+        ref:"professionals"
     },
 
     response: {
