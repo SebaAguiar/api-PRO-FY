@@ -163,28 +163,14 @@ const editUsers = async (req, res) => {
   //   }
   // };
   try {
-    const {
-      id,
-      first_name,
-      last_name,
-      DNI,
-      password,
-      state,
-      city,
-      email,
-      postcode,
-      address,
-      country,
-      favorites,
-    } = matchedData(req);
+    const { id, ...body } = matchedData(req);
 
-    let storedImageData = { url: "", public_id: "" };
 
     if (req.files?.image) {
       const resultImageCloudinary = await uploadImage(
         req.files.image.tempFilePath
       );
-      storedImageData = {
+      body.storedImageData = {
         url: resultImageCloudinary.secure_url,
         public_id: resultImageCloudinary.public_id,
       };
@@ -227,21 +213,7 @@ const editUsers = async (req, res) => {
       });
     }
 
-    const userEdited = await usersModel.findByIdAndUpdate({
-      id,
-      first_name,
-      last_name,
-      DNI,
-      password,
-      state,
-      city,
-      email,
-      postcode,
-      address,
-      country,
-      favorites,
-      image: storedImageData,
-    });
+    const userEdited = await usersModel.findByIdAndUpdate({ id, body });
     console.log('userEdited', userEdited);
     res.send(userEdited);
   } catch (error) {
