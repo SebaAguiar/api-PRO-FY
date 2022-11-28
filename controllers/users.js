@@ -92,7 +92,7 @@ const createUsers = async (req, res) => {
           console.log("File created");
         }
       );
-    
+
       const resultImageCloudinary = await uploadImage(imageTempFilePath);
       storedImageData = {
         url: resultImageCloudinary.secure_url,
@@ -124,7 +124,7 @@ const createUsers = async (req, res) => {
     });
     console.log('userCreated', userCreated);
     res.send(userCreated);
-  } catch(error) {
+  } catch (error) {
     console.log('error', error);
     handleHttpError(res, "Error creando al usuario" + error, 500);
   }
@@ -153,13 +153,100 @@ const deleteUsers = async (req, res) => {
  * @param {*} res
  */
 const editUsers = async (req, res) => {
+  //   try {
+  //     const { id, ...body } = matchedData(req);
+  //     //console.log(id, body);
+  //     const data = await usersModel.findByIdAndUpdate(id, body);
+  //     res.send({ data });
+  //   } catch (error) {
+  //     handleHttpError(res, "Error editando al usuario");
+  //   }
+  // };
   try {
-    const { id, ...body } = matchedData(req);
-    //console.log(id, body);
-    const data = await usersModel.findByIdAndUpdate(id, body);
-    res.send({ data });
+    const {
+      id,
+      first_name,
+      last_name,
+      DNI,
+      password,
+      state,
+      city,
+      email,
+      postcode,
+      address,
+      country,
+      favorites,
+    } = matchedData(req);
+
+    let storedImageData = { url: "", public_id: "" };
+
+    if (req.files?.image) {
+      const resultImageCloudinary = await uploadImage(
+        req.files.image.tempFilePath
+      );
+      storedImageData = {
+        url: resultImageCloudinary.secure_url,
+        public_id: resultImageCloudinary.public_id,
+      };
+
+      fs.unlink(req.files.image.tempFilePath, (error) => {
+        if (error) {
+          console.log(error);
+        } else {
+          console.log("\nFile deleted");
+        }
+      });
+    }
+
+    if (req.body.image) {
+      const extension = req.body.image.split(";")[0].split("/")[1];
+      const base64Image = req.body.image.split(";base64,").pop();
+      const imageTempFilePath = `./uploads/tempImage.${extension}`;
+
+      fs.writeFile(
+        imageTempFilePath,
+        base64Image,
+        { encoding: "base64" },
+        function (err) {
+          console.log("File created");
+        }
+      );
+
+      const resultImageCloudinary = await uploadImage(imageTempFilePath);
+      storedImageData = {
+        url: resultImageCloudinary.secure_url,
+        public_id: resultImageCloudinary.public_id,
+      };
+
+      fs.unlink(imageTempFilePath, (error) => {
+        if (error) {
+          console.log(error);
+        } else {
+          console.log("\nFile deleted");
+        }
+      });
+    }
+
+    const userEdited = await usersModel.findByIdAndUpdate({
+      id,
+      first_name,
+      last_name,
+      DNI,
+      password,
+      state,
+      city,
+      email,
+      postcode,
+      address,
+      country,
+      favorites,
+      image: storedImageData,
+    });
+    console.log('userEdited', userEdited);
+    res.send(userEdited);
   } catch (error) {
-    handleHttpError(res, "Error editando al usuario");
+    console.log('error', error);
+    handleHttpError(res, "Error creando al usuario" + error, 500);
   }
 };
 
