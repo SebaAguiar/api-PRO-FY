@@ -59,8 +59,9 @@ const validatorCreateUser = [
   check("DNI").optional(),
   check("country").optional(),
   check("postcode").optional(),
-  check("image.url").optional(),
-  check("image.public_id").optional(),
+  // check("image.url").optional(),
+  // check("image.public_id").optional(),
+  check("image").optional(),
   check("plan").optional(),
 
   (req, res, next) => {
@@ -70,36 +71,36 @@ const validatorCreateUser = [
 
 const validatorPutUsers = [
 
-//   check("first_name")
-//     .optional(),
-//   check("last_name")
-//     .optional(),
-//   check("email")
-//     .optional(),
-//   check("favorites")
-//     .optional(),
-//   check("state")
-//     .optional(),
-//   check("city")
-//     .optional(),
-//   check("password")
-//     .optional(),
-//   check("role")
-//     .optional(),
-//   check("address")
-//     .optional(),
-//   check("DNI")
-//     .optional(),
-//   check("country")
-//     .optional(),
-//   check("postcode")
-//     .optional(),
-//   check("image.url")
-//     .optional(),
-//   check("image.public_id")
-//     .optional(),
-//   check("plan").optional(),
-    check("first_name").optional(),
+  //   check("first_name")
+  //     .optional(),
+  //   check("last_name")
+  //     .optional(),
+  //   check("email")
+  //     .optional(),
+  //   check("favorites")
+  //     .optional(),
+  //   check("state")
+  //     .optional(),
+  //   check("city")
+  //     .optional(),
+  //   check("password")
+  //     .optional(),
+  //   check("role")
+  //     .optional(),
+  //   check("address")
+  //     .optional(),
+  //   check("DNI")
+  //     .optional(),
+  //   check("country")
+  //     .optional(),
+  //   check("postcode")
+  //     .optional(),
+  //   check("image.url")
+  //     .optional(),
+  //   check("image.public_id")
+  //     .optional(),
+  //   check("plan").optional(),
+  check("first_name").optional(),
   check("last_name").optional(),
   check("email").optional(),
   check("favorites").optional(),

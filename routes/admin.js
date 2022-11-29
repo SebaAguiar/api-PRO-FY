@@ -6,9 +6,9 @@ const router = express.Router();
 
 
 
-//router.get("/", autMiddleware, getUsers);
+router.get("/", validatorCreateAdmin, autMiddleware, getAdmin);
 
-router.get("/", getAdmin);
+//router.get("/", getAdmin);
 
 router.get("/:id", validatorIdAdmin, getAdminById);
 
