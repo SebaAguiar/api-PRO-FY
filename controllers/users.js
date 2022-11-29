@@ -122,7 +122,9 @@ const createUsers = async (req, res) => {
       favorites,
       image: storedImageData,
     });
+    console.log('====================================');
     console.log('userCreated', userCreated);
+    console.log('====================================');
     res.send(userCreated);
   } catch (error) {
     console.log('error', error);
