@@ -2,7 +2,7 @@ const { check } = require("express-validator");
 const validateResults = require("../utils/handleValidator");
 
 
-const validatorCreateUsersAvatar = [
+const validatorCreateAdmin = [
 
   // check("first_name")
   //   .exists()
@@ -76,7 +76,7 @@ const validatorCreateUsersAvatar = [
   }
 ];
 
-const validatorPutUsersAvatar = [
+const validatorPutAdmin = [
 
   check("first_name")
     .optional(),
@@ -111,7 +111,7 @@ const validatorPutUsersAvatar = [
   }
 ];
 
-const validatorIdUsersAvatar = [
+const validatorIdAdmin = [
 
   check("id")
     .exists()
@@ -124,4 +124,4 @@ const validatorIdUsersAvatar = [
 
 
 
-module.exports = { validatorCreateUsersAvatar, validatorIdUsersAvatar, validatorPutUsersAvatar }
+module.exports = { validatorCreateAdmin, validatorIdAdmin, validatorPutAdmin }

@@ -5,7 +5,7 @@ const models = {
   specialitiesModel: require("./nosql/specialities"),
   queriesModel: require('./nosql/queries'),
   reviewsModel: require("./nosql/reviews"),
-  usersAvatarModel: require('./nosql/users'),
+  adminModel: require('./nosql/admin'),
 
   // responsesModel: require("./nosql/responses")
 
