@@ -129,6 +129,8 @@ const createUsers = async (req, res) => {
     handleHttpError(res, "Error creando al usuario" + error, 500);
   }
 };
+
+
 /**
  * Borrar un usuario!
  * @param {*} req

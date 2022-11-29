@@ -2,7 +2,8 @@ const { professionalsModel } = require('../models');
 const fs = require("fs");
 const { handleHttpError } = require("../utils/handleError");
 const { matchedData } = require("express-validator");
-const { uploadImageProfessional } = require("../config/cloudinaryconfig-copy");;
+//const { uploadImageProfessional } = require("../config/cloudinaryconfig-copy");;
+const { uploadImage } = require("../config/cloudinaryconfig");
 
 
 
@@ -48,8 +49,8 @@ const getProfessionalById = async (req, res) => {
 
 
 const createProfessional = async (req, res) => {
-  console.log("req.files",req.files)
-  console.log("req.files",req.body)
+  console.log("req.files", req.files)
+  console.log("req.files", req.body)
   try {
     const {
       first_name,
@@ -103,7 +104,7 @@ const createProfessional = async (req, res) => {
           console.log("File created");
         }
       );
-    
+
       const resultImageCloudinary = await uploadImageProfessional(imageTempFilePath);
       storedImageData = {
         url: resultImageCloudinary.secure_url,
@@ -140,7 +141,7 @@ const createProfessional = async (req, res) => {
     });
     console.log('userCreated', userCreated);
     res.send(userCreated);
-  } catch(error) {
+  } catch (error) {
     console.log('error', error);
     handleHttpError(res, "Error creando al usuario" + error, 500);
   }
