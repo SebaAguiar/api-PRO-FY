@@ -1,6 +1,7 @@
 const Stripe = require("stripe")
 const { professionalsModel } = require('../models');
 const { usersModel } = require("../models");
+const sendMail = require('../config/nodemailer')
 
 
 
@@ -29,6 +30,10 @@ console.log(email)
      else{console.log(data)}
    })
 
+   sendMail.sendMail(email)
+   res.send( "Bienvenido a Pro-Fy, ya tienes nuestro plan Básico" )
+
+
  } catch (error) {
    console.log(error)
    res.status(500).json({ messate: "Internal server error" })
@@ -55,6 +60,9 @@ console.log(email)
      }
      else{console.log(data)}
    })
+   sendMail.sendMail(email)
+   res.send( "Bienvenido a Pro-Fy, ya tienes nuestro plan Premium" )
+
 
  } catch (error) {
    console.log(error)
@@ -81,6 +89,8 @@ console.log(email)
      }
      else{console.log(data)}
    })
+   sendMail.sendMail(email)
+   res.send( "Bienvenido a Pro-Fy, ya tienes nuestro plan Básico" )
 
  } catch (error) {
    console.log(error)
@@ -109,7 +119,8 @@ console.log(email)
      }
      else{console.log(data)}
    })
-
+   sendMail.sendMail(email)
+   res.send( "Bienvenido a Pro-Fy, ya tienes nuestro plan Premium" )
  } catch (error) {
    console.log(error)
    res.status(500).json({ messate: "Internal server error" })
