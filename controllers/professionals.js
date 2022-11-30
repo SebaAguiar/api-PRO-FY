@@ -106,7 +106,7 @@ const createProfessional = async (req, res) => {
         }
       );
 
-      const resultImageCloudinary = await uploadImageProfessional(imageTempFilePath);
+      const resultImageCloudinary = await uploadImage(imageTempFilePath);
       storedImageData = {
         url: resultImageCloudinary.secure_url,
         public_id: resultImageCloudinary.public_id,
