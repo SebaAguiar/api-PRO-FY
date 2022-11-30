@@ -2,7 +2,7 @@ const { professionalsModel } = require('../models');
 const fs = require("fs");
 const { handleHttpError } = require("../utils/handleError");
 const { matchedData } = require("express-validator");
-//const { uploadImageProfessional } = require("../config/cloudinaryconfig-copy");;
+const { uploadImageProfessional } = require("../config/cloudinaryconfig-copy");;
 const { uploadImage } = require("../config/cloudinaryconfig");
 
 
@@ -106,7 +106,7 @@ const createProfessional = async (req, res) => {
         }
       );
 
-      const resultImageCloudinary = await uploadImage(imageTempFilePath);
+      const resultImageCloudinary = await uploadImageProfessional(imageTempFilePath);
       storedImageData = {
         url: resultImageCloudinary.secure_url,
         public_id: resultImageCloudinary.public_id,
