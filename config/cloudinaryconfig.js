@@ -6,14 +6,16 @@ const {
     CLOUDINARY_API_SECRET,
 } = require("../config")
 
-v2.config({
-    cloud_name: CLOUDINARY_CLOUD_NAME,
-    api_key: CLOUDINARY_API_KEY,
-    api_secret: CLOUDINARY_API_SECRET,
-    secure: true
-})
+
 
 const uploadImage = async (filePath) => {
+
+    v2.config({
+        cloud_name: CLOUDINARY_CLOUD_NAME,
+        api_key: CLOUDINARY_API_KEY,
+        api_secret: CLOUDINARY_API_SECRET,
+        secure: true
+    })
     return await v2.uploader.upload(filePath, {
         folder: "Pro-FY"
     })
