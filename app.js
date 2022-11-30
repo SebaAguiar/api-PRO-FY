@@ -19,7 +19,7 @@ app.use(
 );
 
 
-app.use(express.static("storage"))
+
 
 const port = process.env.PORT || 3000
 

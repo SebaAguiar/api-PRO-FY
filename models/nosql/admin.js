@@ -13,7 +13,7 @@ const adminScheme = new mongoose.Schema(
       type: String,
     },
     dni: {
-      type: Number,
+      type: String,
     },
     country: {
       type: String,
@@ -25,7 +25,7 @@ const adminScheme = new mongoose.Schema(
       type: String,
     },
     postcode: {
-      type: Number,
+      type: String,
     },
     address: {
       type: String,
@@ -34,7 +34,9 @@ const adminScheme = new mongoose.Schema(
       type: String,
       unique: true,
     },
-
+    contactNumber: {
+      type: String,
+    },
     password: {
       type: String,
       select: false
