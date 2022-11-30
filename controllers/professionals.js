@@ -7,7 +7,7 @@ const { uploadImage } = require("../config/cloudinaryconfig");
 
 
 
-/***
+/*
  *  Obtener lista de la base de datos!/
  * @param {*} req 
  * @param {*} res 
@@ -49,9 +49,10 @@ const getProfessionalById = async (req, res) => {
 
 
 const createProfessional = async (req, res) => {
-  console.log("req.files", req.files)
+  console.log("req.filesssssssssssss", req.files)
   console.log("req.files", req.body)
   try {
+
     const {
       first_name,
       last_name,
@@ -74,7 +75,7 @@ const createProfessional = async (req, res) => {
     let storedImageData = { url: "", public_id: "" };
 
     if (req.files?.image) {
-      const resultImageCloudinary = await uploadImageProfessional(
+      const resultImageCloudinary = await uploadImage(
         req.files.image.tempFilePath
       );
       storedImageData = {
