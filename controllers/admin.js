@@ -12,7 +12,7 @@ const { uploadImage } = require('../config/cloudinaryconfig');
 const getAdmin = async (req, res) => {
   try {
     const user = req.user;
-    console.log(`USER ASKING DATA: ${user}`);
+    console.log(`USER ASKING DATA ADMIN: ${user}`);
     const data = await adminModel.find({});
     res.send({ user, data })
   } catch (error) {
