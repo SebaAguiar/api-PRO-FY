@@ -50,43 +50,41 @@ const getAdminById = async (req, res) => {
  * @param {*} res 
  */
 
-const createAdmin = async (req, res) => {
-  try {
-    const {
-      first_name,
-      last_name,
-      dni,
-      password,
-      state,
-      city,
-      email,
-      contactNumber,
-      postcode,
-      address,
-      country,
-      role,
-    } = matchedData(req);
-    //console.log(id, body);
-    const data = await adminModel.create({
-      first_name,
-      last_name,
-      dni,
-      password,
-      state,
-      city,
-      email,
-      contactNumber,
-      postcode,
-      address,
-      country,
-      role,
-    }
-    )
-    res.send({ data })
-  } catch (error) {
-    handleHttpError(res, "Error creando al admin")
-  }
-}
+// const createAdmin = async (req, res) => {
+//   try {
+//     const {
+//       first_name,
+//       last_name,
+//       dni,
+//       password,
+//       state,
+//       city,
+//       email,
+//       postcode,
+//       address,
+//       country,
+//       role,
+//     } = matchedData(req);
+//     //console.log(id, body);
+//     const data = await adminModel.create({
+//       first_name,
+//       last_name,
+//       dni,
+//       password,
+//       state,
+//       city,
+//       email,
+//       postcode,
+//       address,
+//       country,
+//       role,
+//     }
+//     )
+//     res.send({ data })
+//   } catch (error) {
+//     handleHttpError(res, "Error creando al admin")
+//   }
+// }
 //!==========================================================================
 
 
@@ -133,4 +131,4 @@ const editAdmin = async (req, res) => {
 
 
 
-module.exports = { getAdmin, getAdminById, createAdmin, deleteAdmin, editAdmin }
+module.exports = { getAdmin, getAdminById, deleteAdmin, editAdmin }
