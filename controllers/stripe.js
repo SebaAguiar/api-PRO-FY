@@ -18,7 +18,7 @@ const useStripeUsersBasic = async (req, res) => {
      payment_method_types: ["card"]
    })
 
-   
+
    
    const clientSecret = paymentIntent.client_secret
    res.json({ message: "Bienvenido al plan básico", clientSecret, "email" : email})
@@ -29,7 +29,7 @@ const useStripeUsersBasic = async (req, res) => {
      else{console.log(data)}
    })
 
-   sendMail(email)
+   sendMail.sendMail(email)
 
  } catch (error) {
    console.log(error)
@@ -53,7 +53,7 @@ const useStripeUsersPremium = async (req, res) => {
      }
      else{console.log(data)}
    })
-   sendMail(email)
+   sendMail.sendMail(email)
 
 
  } catch (error) {
@@ -80,7 +80,7 @@ const useStripeProfessionalsBasic = async (req, res) => {
      }
      else{console.log(data)}
    })
-   sendMail(email)
+   sendMail.sendMail(email)
    
 
  } catch (error) {
@@ -109,7 +109,7 @@ const useStripeProfessionalsPremium = async (req, res) => {
      }
      else{console.log(data)}
    })
-   sendMail(email)
+   sendMail.sendMail(email)
    
  } catch (error) {
    console.log(error)
