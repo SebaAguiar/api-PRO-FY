@@ -194,9 +194,19 @@ const editProfessional = async (req, res) => {
 
 }
 
+const restoreProfessional = async (req, res) => {
+  const { id } = req.params;
+  try {
+    const restored = await professionalModel.restore({ _id: id });
+    res.status(200).send(restored);
+  } catch (error) {
+    res.status(400).send(error.message);
+  }
+};
 
 
-module.exports = { getAllProfessionals, createProfessional, getProfessionalById, deleteProfessional, editProfessional }
+
+module.exports = { getAllProfessionals, createProfessional, getProfessionalById, deleteProfessional, editProfessional, restoreProfessional }
 
 
 // const { professionalsModel } = require('../models');
@@ -210,8 +220,8 @@ module.exports = { getAllProfessionals, createProfessional, getProfessionalById,
 
 // /*
 //  *  Obtener lista de la base de datos!/
-//  * @param {*} req 
-//  * @param {*} res 
+//  * @param {*} req
+//  * @param {*} res
 //  */
 // const getAllProfessionals = async (req, res) => {
 //   try {
@@ -227,8 +237,8 @@ module.exports = { getAllProfessionals, createProfessional, getProfessionalById,
 // }
 // /**
 //  *  Obtener un detalle!
-//  * @param {*} req 
-//  * @param {*} res 
+//  * @param {*} req
+//  * @param {*} res
 //  */
 // const getProfessionalById = async (req, res) => {
 //   try {
@@ -244,8 +254,8 @@ module.exports = { getAllProfessionals, createProfessional, getProfessionalById,
 
 // /**
 //  *  Obtener lista de la base de datos!
-//  * @param {*} req 
-//  * @param {*} res 
+//  * @param {*} req
+//  * @param {*} res
 //  */
 
 
@@ -354,8 +364,8 @@ module.exports = { getAllProfessionals, createProfessional, getProfessionalById,
 
 // /**
 //  *  crear un registro!
-//  * @param {*} req 
-//  * @param {*} res 
+//  * @param {*} req
+//  * @param {*} res
 //  */
 // const deleteProfessional = async (req, res) => {
 //   try {
@@ -372,8 +382,8 @@ module.exports = { getAllProfessionals, createProfessional, getProfessionalById,
 // }
 // /**
 //  *  actualizar un registro!
-//  * @param {*} req 
-//  * @param {*} res 
+//  * @param {*} req
+//  * @param {*} res
 //  */
 // const editProfessional = async (req, res) => {
 //   try {
