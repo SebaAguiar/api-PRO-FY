@@ -1,5 +1,5 @@
 const express = require("express");
-const { getUsers, createUsers, getUserById, deleteUsers, editUsers, } = require("../controllers/users");
+const { getUsers, createUsers, getUserById, deleteUsers, editUsers, restoreUser, } = require("../controllers/users");
 const { useStripeUsersBasic, useStripeUsersPremium } = require("../controllers/stripe")
 const { validatorCreateUser, validatorIdUser, validatorPutUsers } = require("../validators/users");
 const autMiddleware = require("../middleware/session");
@@ -26,6 +26,8 @@ router.post("/", validatorCreateUser, createUsers)
 router.post("/payUserBasic", useStripeUsersBasic)
 
 router.post("/payUserPremium", useStripeUsersPremium)
+
+router.patch("/:id", validatorPutUsers, restoreUser);
 
 // checkRol(["admin"])
 
