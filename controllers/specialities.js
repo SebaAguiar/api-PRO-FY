@@ -88,6 +88,18 @@ const editSpecialities = async (req, res) => {
   }
 }
 
+const PermaDeleteSpecialities = async (req, res) => {
+  const { id } = req.params;
+  console.log(id);
+  try {
+    const restored = await specialitiesModel.findByIdAndRemove({ _id: id });
+    res.status(200).send(restored);
+  } catch (error) {
+    res.status(400).send(error.message);
+  }
+};
 
 
-module.exports = { getSpecialities, createSpecialities, getSpecialitiesById, deleteSpecialities, editSpecialities }
+
+
+module.exports = { getSpecialities, createSpecialities, getSpecialitiesById, deleteSpecialities, editSpecialities, PermaDeleteSpecialities }

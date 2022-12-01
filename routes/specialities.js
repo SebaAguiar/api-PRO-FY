@@ -1,5 +1,5 @@
 const express = require("express");
-const { getSpecialities, createSpecialities, getSpecialitiesById, editSpecialities, deleteSpecialities } = require("../controllers/specialities");
+const { getSpecialities, createSpecialities, getSpecialitiesById, editSpecialities, deleteSpecialities, PermaDeleteSpecialities } = require("../controllers/specialities");
 const { validatorCreateSpecialities, validatorIdSpecialities, validatorPutSpecialities } = require("../validators/specialities");
 const router = express.Router();
 
@@ -14,6 +14,7 @@ router.put("/:id", validatorIdSpecialities, validatorPutSpecialities, editSpecia
 
 router.post("/", validatorCreateSpecialities, createSpecialities)
 
+router.delete("/perma/:id", validatorIdSpecialities, PermaDeleteSpecialities);
 
 
 module.exports = router
