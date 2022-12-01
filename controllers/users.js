@@ -226,4 +226,19 @@ const editUsers = async (req, res) => {
   }
 };
 
-module.exports = { getUsers, createUsers, getUserById, deleteUsers, editUsers };
+const restoreUser = async (req, res) => {
+  const { id } = req.params;
+  try {
+    const restored = await usersModel.restore({ _id: id });
+    res.status(200).send(restored);
+  } catch (error) {
+    res.status(400).send(error.message);
+  }
+};
+
+
+
+
+
+
+module.exports = { getUsers, createUsers, getUserById, deleteUsers, editUsers, restoreUser };
