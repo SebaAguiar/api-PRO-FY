@@ -17,6 +17,8 @@ const useStripeUsersBasic = async (req, res) => {
      currency: "usd",
      payment_method_types: ["card"]
    })
+
+   
    
    const clientSecret = paymentIntent.client_secret
    res.json({ message: "Bienvenido al plan básico", clientSecret, "email" : email})
