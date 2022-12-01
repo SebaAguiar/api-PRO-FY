@@ -1,0 +1,10 @@
+{
+  "service": "gmail",
+  "auth": {
+    "type": "OAuth2",
+    "user": "profyarg@gmail.com",
+    "clientId": "455770438983-5vm2lkko740hpito8v7igkrhveiesmfb.apps.googleusercontent.com",
+    "clientSecret": "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",
+    "refreshToken": "1//046F33wDYLTe2CgYIARAAGAQSNwF-L9Irr0-F3ZXG6uXJbOYgm-2hEz8ZBq46MYyIaR3im9dfHFCuZYLpYcpHBoufB6LXCZ4BfEw"
+  }
+}

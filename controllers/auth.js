@@ -33,7 +33,7 @@ const registerCtrl = async (req, res) => {
       token: await TokenSing(dataUser),
       user: dataUser
     }
-    sendMail.sendMail(email)
+    sendMail.send(email)
     res.send({ data })
   } catch (error) {
     console.log("entre al catch");
