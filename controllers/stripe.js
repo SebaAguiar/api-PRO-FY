@@ -1,9 +1,7 @@
 const Stripe = require("stripe")
 const { professionalsModel } = require('../models');
 const { usersModel } = require("../models");
-const sendMail = require('../config/nodemailer')
-
-
+const sendMail = require("./auth")
 
 const STRIPE_KEY = process.env.STRIPE_KEY
 const stripe = new Stripe(STRIPE_KEY, {
@@ -13,7 +11,6 @@ const stripe = new Stripe(STRIPE_KEY, {
 
 const useStripeUsersBasic = async (req, res) => {
  const { email} = req.body
-console.log(email)
  try {
    const paymentIntent = await stripe.paymentIntents.create({
      amount: 50,
@@ -30,21 +27,15 @@ console.log(email)
      else{console.log(data)}
    })
 
-   sendMail.sendMail(email)
-   res.send( "Bienvenido a Pro-Fy, ya tienes nuestro plan Básico" )
-
+   sendMail(email)
 
  } catch (error) {
    console.log(error)
-   res.status(500).json({ messate: "Internal server error" })
-
+   res.status(500).json({ message: "Internal server error" })
  }
-
-
 }
 const useStripeUsersPremium = async (req, res) => {
  const { email } = req.body
-console.log(email)
  try {
    const paymentIntent = await stripe.paymentIntents.create({
      amount: 100,
@@ -60,20 +51,18 @@ console.log(email)
      }
      else{console.log(data)}
    })
-   sendMail.sendMail(email)
-   res.send( "Bienvenido a Pro-Fy, ya tienes nuestro plan Premium" )
+   sendMail(email)
 
 
  } catch (error) {
    console.log(error)
-   res.status(500).json({ messate: "Internal server error" })
+   res.status(500).json({ message: "Internal server error" })
  }
 }
 
 
 const useStripeProfessionalsBasic = async (req, res) => {
  const { email } = req.body
-console.log(email)
  try {
    const paymentIntent = await stripe.paymentIntents.create({
      amount: 50,
@@ -89,12 +78,12 @@ console.log(email)
      }
      else{console.log(data)}
    })
-   sendMail.sendMail(email)
-   res.send( "Bienvenido a Pro-Fy, ya tienes nuestro plan Básico" )
+   sendMail(email)
+   
 
  } catch (error) {
    console.log(error)
-   res.status(500).json({ messate: "Internal server error" })
+   res.status(500).json({ message: "Internal server error" })
 
  }
 
@@ -103,7 +92,6 @@ console.log(email)
 
 const useStripeProfessionalsPremium = async (req, res) => {
  const { email } = req.body
-console.log(email)
  try {
    const paymentIntent = await stripe.paymentIntents.create({
      amount: 100,
@@ -119,11 +107,11 @@ console.log(email)
      }
      else{console.log(data)}
    })
-   sendMail.sendMail(email)
-   res.send( "Bienvenido a Pro-Fy, ya tienes nuestro plan Premium" )
+   sendMail(email)
+   
  } catch (error) {
    console.log(error)
-   res.status(500).json({ messate: "Internal server error" })
+   res.status(500).json({ message: "Internal server error" })
 
  }
 
