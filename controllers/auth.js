@@ -3,7 +3,6 @@ const { handleHttpError } = require('../utils/handleError');
 const { matchedData } = require('express-validator');
 const { encrypt, compare } = require('../utils/handlePassword');
 const { TokenSing } = require('../utils/handleJwt');
-const sendMail = require('../config/nodemailer')
 
 
 /**
