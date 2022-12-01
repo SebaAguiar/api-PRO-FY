@@ -159,7 +159,7 @@ const deleteProfessional = async (req, res) => {
   try {
     req = matchedData(req)
     const { id } = req
-    // console.log(id)
+    console.log(id)
     const data = await professionalsModel.delete({ _id: id })
     res.send({ data })
   } catch (error) {
@@ -196,17 +196,52 @@ const editProfessional = async (req, res) => {
 
 const restoreProfessional = async (req, res) => {
   const { id } = req.params;
+  console.log(id)
   try {
-    const restored = await professionalModel.restore({ _id: id });
+    const restored = await professionalsModel.restore({ _id: id });
     res.status(200).send(restored);
   } catch (error) {
     res.status(400).send(error.message);
   }
 };
 
+const PermaDeletePro = async (req, res) => {
+  const { id } = req.params;
+  try {
+    const restored = await professionalsModel.findByIdAndRemove({ _id: id });
+    res.status(200).send(restored);
+  } catch (error) {
+    res.status(400).send(error.message);
+  }
+};
+
+const getAllProfessionalsBanned = async (req, res) => {
+  // try {
+  //   console.log(res, "entre al res");
+  //   const info = await professionalsModel.findWithDeleted({}).populate("specialities")
+  //   console.log(totalData);
+  //   res.send({ data })
+
+  // } catch (error) {
+  //   handleHttpError(res, "Error_get_items")
+  // }
+
+  try {
+    // const data = await professionalsModel.find({}).populate("specialities")
+    const pro = await professionalsModel
+      .findWithDeleted({})
+    const usersBanned = pro.filter((e) => e.deleted === true);
+    // const totalData = (data.concat(usersBanned))
+
+    return res.json(usersBanned);
+  } catch (e) {
+    return res.send(e.message);
+  }
+}
 
 
-module.exports = { getAllProfessionals, createProfessional, getProfessionalById, deleteProfessional, editProfessional, restoreProfessional }
+
+module.exports = { getAllProfessionals, createProfessional, getProfessionalById, deleteProfessional, editProfessional, restoreProfessional, PermaDeletePro, getAllProfessionalsBanned }
 
 
 // const { professionalsModel } = require('../models');

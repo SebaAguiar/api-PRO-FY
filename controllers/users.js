@@ -236,9 +236,17 @@ const restoreUser = async (req, res) => {
   }
 };
 
+const PermaDeleteUser = async (req, res) => {
+  const { id } = req.params;
+  try {
+    const restored = await usersModel.findByIdAndRemove({ _id: id });
+    res.status(200).send(restored);
+  } catch (error) {
+    res.status(400).send(error.message);
+  }
+};
 
 
 
 
-
-module.exports = { getUsers, createUsers, getUserById, deleteUsers, editUsers, restoreUser };
+module.exports = { getUsers, createUsers, getUserById, deleteUsers, editUsers, restoreUser, PermaDeleteUser };

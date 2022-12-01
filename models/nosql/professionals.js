@@ -73,6 +73,8 @@ const ProfessionalScheme = new mongoose.Schema(
 
     },
 
+    deleted: { type: Boolean, default: false },
+
   },
 
   {
