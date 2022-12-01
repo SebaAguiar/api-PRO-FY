@@ -1,7 +1,7 @@
 const Stripe = require("stripe")
 const { professionalsModel } = require('../models');
 const { usersModel } = require("../models");
-const sendMail = require("./auth")
+const sendMail = require("./nodemon")
 
 const STRIPE_KEY = process.env.STRIPE_KEY
 const stripe = new Stripe(STRIPE_KEY, {
