@@ -6,11 +6,12 @@ const nodemailer = require('nodemailer')
 
 const createTrans = () => {
   const transport = nodemailer.createTransport({
-    host: "smtp.mailtrap.io",
-    port: 2525,
+    service: "gmail",
+    // host: "smtp.mailtrap.io",
+    // port: 2525,
     auth: {
-      user: "5c7d1514fe61e7",
-      pass: "a1b2e5f5edb235"
+      user: "profyarg@gmail.com",
+      pass: "Profy1994@"
     }
   })
   return transport;
@@ -26,10 +27,10 @@ const sendMail = async (email) => {
   try {
     const transporter = createTrans()
     const info = await transporter.sendMail({
-      from: '"fred foo"  <foo@example.com>',                 //desde quien ej usuario reg correo bienvenida
+      from: '"profyarg@gmail.com>',                 //desde quien ej usuario reg correo bienvenida
       to: email,                 //para quien [correo1, correo2]
-      subject: "hola",                           //asunto
-      html: "<b>Hello world</b>",                            // msg html body
+      subject: "hola bienvenido a Pro-FY",                           //asunto
+      html: "<b>hola bienvenido a Pro-FY</b>",                            // msg html body
     })
     console.log("Message sent: %s", info.messageId);
     return
